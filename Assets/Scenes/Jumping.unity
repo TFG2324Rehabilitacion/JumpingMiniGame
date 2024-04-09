@@ -7093,6 +7093,7 @@ GameObject:
   - component: {fileID: 980216250}
   - component: {fileID: 980216252}
   - component: {fileID: 980216251}
+  - component: {fileID: 980216253}
   m_Layer: 5
   m_Name: CountdownText
   m_TagString: Untagged
@@ -7216,6 +7217,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980216249}
   m_CullTransparentMesh: 1
+--- !u!114 &980216253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980216249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74df650660e20c4cadf403704acfdb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983574707
 GameObject:
   m_ObjectHideFlags: 0
@@ -11835,9 +11848,9 @@ MonoBehaviour:
   connectionPanel: {fileID: 925036224}
   infoText: {fileID: 152915979}
   ipText: {fileID: 1332715068}
-  timer: {fileID: 0}
+  timer: {fileID: 980216253}
   scoreText: {fileID: 1415347511}
-  roundText: {fileID: 0}
+  roundText: {fileID: 2045546963}
 --- !u!1 &1634986499
 GameObject:
   m_ObjectHideFlags: 0
