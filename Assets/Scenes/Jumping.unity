@@ -5268,6 +5268,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &684506654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4611242699832167563, guid: 4c954486bb884d049a68d6ac37973d7b, type: 3}
+  m_PrefabInstance: {fileID: 1659278038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &688376295
 GameObject:
   m_ObjectHideFlags: 0
@@ -11851,6 +11856,7 @@ MonoBehaviour:
   timer: {fileID: 980216253}
   scoreText: {fileID: 1415347511}
   roundText: {fileID: 2045546963}
+  ipPanel: {fileID: 684506654}
 --- !u!1 &1634986499
 GameObject:
   m_ObjectHideFlags: 0

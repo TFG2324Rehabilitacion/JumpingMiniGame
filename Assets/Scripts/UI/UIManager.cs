@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PreparationCountdownTimer timer;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI roundText;
+    [SerializeField] private GameObject ipPanel;
 
     private static UIManager instance;
     public static UIManager Instance
@@ -67,8 +68,7 @@ public class UIManager : MonoBehaviour
 
     public void StartCountdown(float countdown)
     {
-        infoText.gameObject.SetActive(false);
-        ipText.gameObject.SetActive(false);
+        ipPanel.SetActive(false);
 
         timer.Init(countdown);
         timer.gameObject.SetActive(true);
@@ -76,8 +76,7 @@ public class UIManager : MonoBehaviour
 
     public void StopCountdown()
     {
-        infoText.gameObject.SetActive(true);
-        ipText.gameObject.SetActive(true);
+        ipPanel.SetActive(true);
 
         timer.gameObject.SetActive(false);
     }
