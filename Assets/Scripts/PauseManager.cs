@@ -24,6 +24,6 @@ public class PauseManager : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("HomeScene");
+        SceneManager.LoadScene("SampleScene");
     }
 }
