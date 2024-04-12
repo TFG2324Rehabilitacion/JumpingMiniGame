@@ -7,6 +7,7 @@ public class PlataformGenerator : MonoBehaviour
     // Start is called before the first frame update
     public GameObject plataforma;
     public int numPlataformas = 10;
+    public float gapY = 10.0f;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class PlataformGenerator : MonoBehaviour
         Vector3 posicionInicial = transform.position;
         for (int i = 0; i < numPlataformas; i++)
         {
-            Vector3 nuevaPos = posicionInicial + new Vector3(0, i * plataformaH, -5);
+            Vector3 nuevaPos = posicionInicial + new Vector3(0, i * plataformaH * gapY, -5);
             Instantiate(plataforma, nuevaPos, Quaternion.identity);
         }
     }
