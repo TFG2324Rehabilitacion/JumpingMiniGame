@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Opciones
+  - Platform
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI roundText;
     [SerializeField] private GameObject ipPanel;
+    [SerializeField] private Image arrowIndicator;
+    [SerializeField] private Sprite upArrow;
+    [SerializeField] private Sprite downArrow;
+    [SerializeField] private GameObject endGamePanel;
 
     private static UIManager instance;
     public static UIManager Instance
@@ -50,13 +54,20 @@ public class UIManager : MonoBehaviour
     {
         movementSlider.value = value;
 
-        if (value >= 1f)
+        if (value >= 1f && InputManager.Instance.movementDone)
         {
             movementSlider.fillRect.GetComponent<Image>().color = Color.blue;
+            arrowIndicator.sprite = downArrow;
+        }
+        else if (!InputManager.Instance.movementDone)
+        {
+            movementSlider.fillRect.GetComponent<Image>().color = Color.yellow;
+            arrowIndicator.sprite = upArrow;
         }
         else
         {
             movementSlider.fillRect.GetComponent<Image>().color = Color.red;
+
         }
     }
 

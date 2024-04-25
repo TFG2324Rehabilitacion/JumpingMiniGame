@@ -123,7 +123,7 @@ public class InputManager : MonoBehaviour
     private void PlayerMovement()
     {
         GameManager.Instance.playerAnim = true;
-        player.PerformMovement();
+        //player.PerformMovement();
     }
 
     private void SetInitialInclination()

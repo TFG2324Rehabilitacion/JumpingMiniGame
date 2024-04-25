@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     #region SINGLETON
@@ -51,8 +51,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        maxRounds = ConfigData.Instance().totalSeries;
-        maxJumps = ConfigData.Instance().totalReps;
+        //maxRounds = ConfigData.Instance().totalSeries;
+        //maxJumps = ConfigData.Instance().totalReps;
+        maxRounds = 2;
+        maxJumps = 10;
     }
 
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int numPoints)
     {
         _score += numPoints;
+        GameManager.Instance.numJumps++;
         if (_score < 0)
         {
             _score = 0;
@@ -130,9 +133,18 @@ public class GameManager : MonoBehaviour
     {
         UIManager.Instance.EnableConnectionPanel();
         playing = false;
+        Debug.Log("FIN DEL JUEGO");
         PlayerData.Instance().totalScore = _score;
         PlayerData.Instance().gameTime = Time.time;
         PlayerData.Instance().SaveData();
     }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
