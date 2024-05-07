@@ -1,3 +1,4 @@
+using MongoDB.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        angleToReach = ConfigData.Instance().angle;
+        angleToReach = GameManager.Instance.angle;
         movementDone = false;
     }
 
@@ -75,7 +76,17 @@ public class InputManager : MonoBehaviour
                 timeBetweenSaves -= Time.deltaTime;
             else
             {
-                PlayerData.Instance().AddRawInput(Time.time, currentInclination);
+                float currentTime = Time.time - GameManager.Instance.gameStartTime;
+
+                RawInputData rawInput = new RawInputData
+                {
+                    Id = ObjectId.GenerateNewId(),
+                    PlayerId = GameManager.Instance.PlayerId,
+                    TimeStamp = currentTime,
+                    Angle = currentInclination,
+                };
+                RealmController.Instance.AddRawInput(GameManager.Instance.PlayerId, rawInput);
+
                 timeBetweenSaves = 1f;
             }
 

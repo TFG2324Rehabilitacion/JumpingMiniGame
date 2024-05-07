@@ -24,6 +24,6 @@ public class PauseManager : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MenuScene");
     }
 }

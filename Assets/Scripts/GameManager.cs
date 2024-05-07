@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region GAME CONFIG VALUES
+    public string PlayerId { get; set; }
     public int numJumps { get; private set; } = 0;
     public int maxJumps { get; private set; } = 0;
+    public float angle { get; private set; } = 0f;
 
     private int maxRounds;
     private int rounds = 0;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     public bool playing { get; private set; }
 
     public bool enPausa = false;
+    public float gameStartTime { get; set; }
     #endregion
 
 
@@ -42,6 +45,8 @@ public class GameManager : MonoBehaviour
 
             playing = false;
             playerAnim = false;
+
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -51,22 +56,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //maxRounds = ConfigData.Instance().totalSeries;
-        //maxJumps = ConfigData.Instance().totalReps;
-        maxRounds = 2;
-        maxJumps = 10;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 
     public void AddPoints(int numPoints)
     {
         _score += numPoints;
-        GameManager.Instance.numJumps++;
+        numJumps++;
         if (_score < 0)
         {
             _score = 0;
@@ -134,17 +130,27 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.EnableConnectionPanel();
         playing = false;
         Debug.Log("FIN DEL JUEGO");
-        PlayerData.Instance().totalScore = _score;
-        PlayerData.Instance().gameTime = Time.time;
-        PlayerData.Instance().SaveData();
+        //PlayerData.Instance().totalScore = _score;
+        //PlayerData.Instance().gameTime = Time.time;
+        //PlayerData.Instance().SaveData();
+        // save data to database
+        RealmController.Instance.SetScore(PlayerId, _score);
+        RealmController.Instance.SetGameTime(PlayerId, Time.time - gameStartTime);
     }
     public void BackToMenu()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void LoadConfig()
+    {
+        maxJumps = RealmController.Instance.GetRepsForPlayer(PlayerId);
+        maxRounds = RealmController.Instance.GetSeriesForPlayer(PlayerId);
+        angle = RealmController.Instance.GetAngleForPlayer(PlayerId);
     }
 }
