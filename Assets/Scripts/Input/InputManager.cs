@@ -109,6 +109,8 @@ public class InputManager : MonoBehaviour
             }
 
         }
+
+        GameManager.Instance.playerAnim = player.isJumping;
     }
 
     private float CalculateInclination()
@@ -133,7 +135,7 @@ public class InputManager : MonoBehaviour
 
     private void PlayerMovement()
     {
-        GameManager.Instance.playerAnim = true;
+        player.JumpToNextPlatform();
         //player.PerformMovement();
     }
 

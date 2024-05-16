@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public int pointsLost = 25;
     public float jumpForce = 10f;
     public bool isJumping = false;
-    public float spikeActivationTime = 10f;
+    public float spikeActivationTime = 5f;
     public AudioSource jumpEffect;
     public AudioSource spikesEffect;
 
@@ -56,18 +56,18 @@ public class Player : MonoBehaviour
                 spikeActivated = false;
                 JumpToNextPlatform();
                 //DesactivateSpikes();
-                GameManager.Instance.AddPoints(pointsGiven); 
+                GameManager.Instance.AddPoints(pointsGiven);
                 Debug.Log(GameManager.Instance.numJumps);
             }
         }
-        else
+        else if (GameManager.Instance.RoundFinished())
         {
             GameManager.Instance.EndRound();
         }
 
     }
 
-    void JumpToNextPlatform()
+    public void JumpToNextPlatform()
     {
         playerCollider.enabled = false;
         isJumping = true;
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
             isJumping = false;
             isOnPlatform = true;
             currentPlatform = collision.gameObject;
-            
+
             //ActivateSpikes();
         }
     }
@@ -102,23 +102,23 @@ public class Player : MonoBehaviour
         {
             isOnPlatform = false;
             currentPlatform = null;
-            DesactivateSpikes();
+            DisableSpikes();
         }
     }
 
     private void ActivateSpikes()
     {
-        if(currentPlatform != null)
+        if (currentPlatform != null)
         {
             SpikeController spikeController = currentPlatform.GetComponent<SpikeController>();
-            if(spikeController != null)
+            if (spikeController != null)
             {
                 spikeController.ActivateSpikes();
             }
         }
     }
 
-    private void DesactivateSpikes()
+    private void DisableSpikes()
     {
         if (currentPlatform != null)
         {

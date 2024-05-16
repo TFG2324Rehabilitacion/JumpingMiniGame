@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         playing = false;
         if (rounds < maxRounds)
         {
-            Invoke("ResetUI", 2.0f);
+            Invoke("ResetUI", 3.0f);
         }
         else
         {
@@ -127,12 +127,9 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        UIManager.Instance.EnableConnectionPanel();
+        UIManager.Instance.ShowEndGamePanel();
         playing = false;
         Debug.Log("FIN DEL JUEGO");
-        //PlayerData.Instance().totalScore = _score;
-        //PlayerData.Instance().gameTime = Time.time;
-        //PlayerData.Instance().SaveData();
         // save data to database
         RealmController.Instance.SetScore(PlayerId, _score);
         RealmController.Instance.SetGameTime(PlayerId, Time.time - gameStartTime);
