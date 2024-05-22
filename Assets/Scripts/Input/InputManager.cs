@@ -59,17 +59,6 @@ public class InputManager : MonoBehaviour
                 SetInitialInclination();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && !GameManager.Instance.enPausa && !GameManager.Instance.RoundFinished())
-            {
-                // golpear
-                if (GameManager.Instance.playerJumping)
-                {
-                    //GameManager.Instance.numBallHit++;
-                }
-                PlayerMovement();
-            }
-
-
             float currentInclination = CalculateInclination();
 
             if (timeBetweenSaves > 0)
@@ -136,7 +125,6 @@ public class InputManager : MonoBehaviour
     private void PlayerMovement()
     {
         player.JumpToNextPlatform();
-        //player.PerformMovement();
     }
 
     private void SetInitialInclination()

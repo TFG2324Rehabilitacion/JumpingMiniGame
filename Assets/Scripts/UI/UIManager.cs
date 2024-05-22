@@ -111,21 +111,6 @@ public class UIManager : MonoBehaviour
         roundText.SetText($"Rondas: {GameManager.Instance.GetRoundsLeft()}");
     }
 
-    public void ShowJumpsLeft()
-    {
-
-    }
-
-    public void ClearJumpFeedback()
-    {
-
-    }
-
-    public void ChangeHitImageSprite(int index, bool bomb)
-    {
-
-    }
-
     public void ShowEndGamePanel()
     {
         endGamePanel.SetActive(true);

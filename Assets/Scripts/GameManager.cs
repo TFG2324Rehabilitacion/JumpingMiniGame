@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     #region GAME CONFIG VALUES
     public string PlayerId { get; set; }
-    public int numJumps { get; private set; } = 0;
+    public int numJumps { get; set; } = 0;
     public int maxJumps { get; private set; } = 0;
     public float angle { get; private set; } = 0f;
 
@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     private int _score;
 
     public bool playerAnim { get; set; }
-    public bool playerJumping = false;
     #endregion
 
     #region GAME FLOW VARIABLES
@@ -62,7 +61,6 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int numPoints)
     {
         _score += numPoints;
-        numJumps++;
         if (_score < 0)
         {
             _score = 0;
@@ -81,15 +79,9 @@ public class GameManager : MonoBehaviour
         return maxRounds - rounds;
     }
 
-    private void JumpAnimation()
-    {
-        numJumps++;
-    }
-
     public void StartRound()
     {
         numJumps = 0;
-        UIManager.Instance.ShowJumpsLeft();
         UIManager.Instance.UpdateRoundsText();
         playing = true;
     }
@@ -100,23 +92,28 @@ public class GameManager : MonoBehaviour
         playing = false;
         if (rounds < maxRounds)
         {
-            Invoke("ResetUI", 3.0f);
+            numJumps = 0;
+            Invoke("ResetUI", 2.0f);
         }
         else
         {
-            EndGame();
+            Invoke("EndGame", 2.0f);
         }
     }
 
     private void ResetUI()
     {
         UIManager.Instance.StartCountdown(2f);
-        UIManager.Instance.ClearJumpFeedback();
     }
 
     public bool RoundFinished()
     {
         return numJumps >= maxJumps;
+    }
+
+    public bool GameFinished()
+    {
+        return rounds >= maxRounds;
     }
 
     public void StopGame()

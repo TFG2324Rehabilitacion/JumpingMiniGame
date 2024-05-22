@@ -91,7 +91,7 @@ public class RealmController : MonoBehaviour
     {
 
         var dataModel = _realm.All<PlayerData>().ToList();
-        PlayerData playerData = _realm.All<PlayerData>().FirstOrDefault(data => data.PlayerId == id);
+        PlayerData playerData = _realm.All<PlayerData>().FirstOrDefault(data => data.PlayerId == id && data.Name == "tobillo - jumpgame");
 
         return playerData;
     }

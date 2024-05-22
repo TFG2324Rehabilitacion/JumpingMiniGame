@@ -7,17 +7,32 @@ public class PlataformGenerator : MonoBehaviour
     // Start is called before the first frame update
     public GameObject plataforma;
     public GameObject spike;
-    public int numPlataformas = 10;
+    public int numPlataformas;
     public float gapY = 10.0f;
 
     private List<GameObject> generatePlatforms = new List<GameObject>();
 
+    private bool regenerated = false;
+
     void Start()
     {
+        numPlataformas = GameManager.Instance.maxJumps;
         GenerarPlataformas();
     }
 
-    void GenerarPlataformas()
+    private void Update()
+    {
+        if (!GameManager.Instance.playing && !GameManager.Instance.GameFinished() && !regenerated)
+        {
+            RegenerarPlataformas();
+        }
+        else if (!regenerated)
+        {
+            regenerated = true;
+        }
+    }
+
+    private void GenerarPlataformas()
     {
         float plataformaH = plataforma.GetComponent<SpriteRenderer>().bounds.size.y;
         Vector3 posicionInicial = transform.position;
@@ -36,5 +51,19 @@ public class PlataformGenerator : MonoBehaviour
             SpikeController spikeController = newPlatform.GetComponent<SpikeController>();
             spikeController.spikes = new GameObject[] { newSpike };
         }
+    }
+
+    void RegenerarPlataformas()
+    {
+        foreach (GameObject platform in generatePlatforms)
+        {
+            Destroy(platform);
+        }
+
+        generatePlatforms.Clear();
+
+        GenerarPlataformas();
+
+        regenerated = true;
     }
 }
