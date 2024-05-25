@@ -37,7 +37,10 @@ public class GameManagerMenu : MonoBehaviour
         SceneManager.LoadScene("Jumping");
     }
 
-   
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
 
 }

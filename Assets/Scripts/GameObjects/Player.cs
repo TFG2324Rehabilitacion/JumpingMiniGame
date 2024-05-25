@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("Platform") && GameManager.Instance.playing)
         {
             isOnPlatform = false;
             DisableSpikes();
