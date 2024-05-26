@@ -158,7 +158,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: es.ucm.TFG2324Rehabilitacion.GolfingMiniGame
+    Android: es.ucm.TFG2324Rehabilitacion.JumpingMiniGame
     Standalone: es.ucm.TFG2324Rehabilitacion.JumpingMiniGame
   buildNumber:
     Standalone: 0

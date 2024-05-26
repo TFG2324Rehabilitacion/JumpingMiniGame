@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -126,10 +127,14 @@ public class GameManager : MonoBehaviour
     {
         UIManager.Instance.ShowEndGamePanel();
         playing = false;
+        string dateTime = System.DateTime.UtcNow.ToLocalTime().ToString("dd-MM-yyyy HH:mm");
+
         Debug.Log("FIN DEL JUEGO");
         // save data to database
         RealmController.Instance.SetScore(PlayerId, _score);
         RealmController.Instance.SetGameTime(PlayerId, Time.time - gameStartTime);
+        RealmController.Instance.SetDateTime(PlayerId, dateTime);
+        RealmController.Instance.SetGameCompleted(PlayerId, true);
     }
     public void BackToMenu()
     {
